@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>App</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on('message', function(data) {
+        var el = document.createElement('div');
+        el.className = 'message';
+        el.innerText = JSON.stringify(data);
+        document.getElementById('out').appendChild(el);
+      });
+
+      function openDoor() {
+        socket.emit('open_door');
+      }
+    </script>
+    <style>
+      * {
+        font-family: sans-serif;
+      }
+      .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 25px 0 50px 0;
+      }
+      #out {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .message {
+        background-color: #445;
+        color: #fff;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        border: solid 1px #222;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Rabbitmq - tester</h1>
+      <button onclick="openDoor()">Open door!</button>
+    </div>
+    <div id="out"></div>
+  </body>
+</html>
