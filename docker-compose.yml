@@ -1,0 +1,19 @@
+version: '3'
+services:
+  rabbitmq-deamon:
+    image: 'rabbitmq:3'
+    hostname: 'rabbitmq-deamon'
+  rabbitmq-management:
+    image: 'rabbitmq:3-management'
+    hostname: 'rabbitmq-management'
+    depends_on:
+      - "rabbitmq-deamon"
+    ports: 
+      - "8080:15672"
+    environment: 
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=demo
+  rabbitmq-tester:
+    build: rabbitmq-tester/.
+    depends_on:
+      - "rabbitmq-deamon"

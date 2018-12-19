@@ -1,0 +1,16 @@
+{
+  "name": "rabbitmq-tester",
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
+  "author": "Jeroen Vervaeke",
+  "dependencies": {
+    "@types/amqplib": "^0.5.9",
+    "@types/node": "^10.12.17",
+    "@types/socket.io": "^2.1.2",
+    "amqplib": "^0.5.3",
+    "socket.io": "^2.2.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2"
+  }
+}
