@@ -7,7 +7,7 @@ import { createAndStartServer } from './server/factory';
 export const main = async (): Promise<void> => {
   const server = createAndStartServer(80);
 
-  const client = await tryCreateClient('rabbitmq-deamon', 'admin', 'demo', 'open-door', 15, 1000);
+  const client = await tryCreateClient('rabbitmq-daemon', 'admin', 'demo', 'open-door', 15, 1000);
 
   server.express.get('/', (_req, resp) => {
     resp.sendfile(join(__dirname, '..', 'static', 'index.html'));
