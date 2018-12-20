@@ -28,7 +28,7 @@ export const main = async (): Promise<void> => {
   });
 
   client.Consume(message => {
-    console.debug(`client.consome`);
+    console.debug(`client.consume`);
     server.io.send(message);
   });
 };
