@@ -14,3 +14,7 @@ services:
       - "8081:80"
     depends_on:
       - "rabbitmq-daemon"
+  slack-bot:
+    build: slack_bot/slackBot/.
+    depends_on:
+      - "rabbitmq-daemon"
