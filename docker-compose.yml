@@ -1,6 +1,6 @@
 version: '3'
 services:
-  rabbitmq-deamon:
+  rabbitmq-daemon:
     image: 'rabbitmq:3-management'
     hostname: 'rabbitmq'
     ports: 
@@ -13,4 +13,4 @@ services:
     ports:
       - "8081:80"
     depends_on:
-      - "rabbitmq-deamon"
+      - "rabbitmq-daemon"
