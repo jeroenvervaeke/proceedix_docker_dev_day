@@ -35,8 +35,7 @@ namespace slackBot
 				};
 				channel.BasicConsume(queueName, true, consumer);
 
-				Console.WriteLine(" Press [enter] to exit.");
-				Console.ReadLine();
+				DockerExitHandler.Wait();
 			}
 		}
 
