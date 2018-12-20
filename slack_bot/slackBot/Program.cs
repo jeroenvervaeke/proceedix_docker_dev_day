@@ -6,59 +6,55 @@ using RabbitMQ.Client.Events;
 
 namespace slackBot
 {
-    public class Program
-    {
-        public static async Task Main(string[] args)
-        {
-            var exchangeValue = "open-door";
-            var factory = new ConnectionFactory() {HostName = "rabbitmq-daemon", Password = "demo", UserName = "admin"};
-            var max_try = 15;
+	public static class Program
+	{
+		private const string ExchangeName = "open-door";
+		private const int MaxTry = 15;
 
-            using (var connection = await TryMakeConnection(factory, max_try))
+		public static async Task Main(string[] args)
+		{
+			var factory = new ConnectionFactory() { HostName = "rabbitmq-daemon", Password = "demo", UserName = "admin" };
 
-            using (var channel = connection.CreateModel())
-            {
-                channel.ExchangeDeclare(exchange: exchangeValue, type: "fanout");
+			using (var connection = await TryMakeConnection(factory, MaxTry))
 
-                var queueName = channel.QueueDeclare().QueueName;
-                channel.QueueBind(queue: queueName,
-                    exchange: exchangeValue,
-                    routingKey: "");
+			using (var channel = connection.CreateModel())
+			{
+				channel.ExchangeDeclare(ExchangeName, "fanout");
 
-                Console.WriteLine(" [*] Waiting for logs.");
+				var queueName = channel.QueueDeclare().QueueName;
+				channel.QueueBind(queueName, ExchangeName, "");
 
-                var consumer = new EventingBasicConsumer(channel);
-                consumer.Received += (model, ea) =>
-                {
-                    var body = ea.Body;
-                    var message = Encoding.UTF8.GetString(body);
-                    Console.WriteLine(" [x] {0}", message);
-                };
-                channel.BasicConsume(queue: queueName,
-                    autoAck: true,
-                    consumer: consumer);
+				Console.WriteLine(" [*] Waiting for messages.");
 
-                Console.WriteLine(" Press [enter] to exit.");
-                Console.ReadLine();
-            }
-        }
+				var consumer = new EventingBasicConsumer(channel);
+				consumer.Received += (model, ea) =>
+				{
+					var body = ea.Body;
+					var message = Encoding.UTF8.GetString(body);
+					Console.WriteLine(" [x] {0}", message);
+				};
+				channel.BasicConsume(queueName, true, consumer);
 
-        public static async Task<IConnection> TryMakeConnection(ConnectionFactory factory, int maxRetries)
-        {
-            var countTries=0;
-            while (true)
-            {
-                try
-                {
-                    return factory.CreateConnection();
-                }
-                catch
-                {
-                    if (++countTries == maxRetries)
-                        throw;
-                    await Task.Delay(3000);
-                }
-            }
-        }
-    }
+				Console.WriteLine(" Press [enter] to exit.");
+				Console.ReadLine();
+			}
+		}
+
+		private static async Task<IConnection> TryMakeConnection(IConnectionFactory factory, int maxRetries)
+		{
+			var countTries = 0;
+			while (true)
+			{
+				try
+				{
+					return factory.CreateConnection();
+				}
+				catch
+				{
+					if (++countTries == maxRetries) { throw; }
+					await Task.Delay(3000);
+				}
+			}
+		}
+	}
 }
