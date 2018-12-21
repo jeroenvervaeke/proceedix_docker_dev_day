@@ -1,0 +1,10 @@
+C:\Users\Dule\Downloads\proceedix_docker_dev_day-master\DoorOpenConsole\bin\Release\netcoreapp2.1\DoorOpenConsole.deps.json
+C:\Users\Dule\Downloads\proceedix_docker_dev_day-master\DoorOpenConsole\bin\Release\netcoreapp2.1\DoorOpenConsole.runtimeconfig.json
+C:\Users\Dule\Downloads\proceedix_docker_dev_day-master\DoorOpenConsole\bin\Release\netcoreapp2.1\DoorOpenConsole.runtimeconfig.dev.json
+C:\Users\Dule\Downloads\proceedix_docker_dev_day-master\DoorOpenConsole\bin\Release\netcoreapp2.1\DoorOpenConsole.dll
+C:\Users\Dule\Downloads\proceedix_docker_dev_day-master\DoorOpenConsole\bin\Release\netcoreapp2.1\DoorOpenConsole.pdb
+C:\Users\Dule\Downloads\proceedix_docker_dev_day-master\DoorOpenConsole\obj\Release\netcoreapp2.1\DoorOpenConsole.csproj.CoreCompileInputs.cache
+C:\Users\Dule\Downloads\proceedix_docker_dev_day-master\DoorOpenConsole\obj\Release\netcoreapp2.1\DoorOpenConsole.AssemblyInfoInputs.cache
+C:\Users\Dule\Downloads\proceedix_docker_dev_day-master\DoorOpenConsole\obj\Release\netcoreapp2.1\DoorOpenConsole.AssemblyInfo.cs
+C:\Users\Dule\Downloads\proceedix_docker_dev_day-master\DoorOpenConsole\obj\Release\netcoreapp2.1\DoorOpenConsole.dll
+C:\Users\Dule\Downloads\proceedix_docker_dev_day-master\DoorOpenConsole\obj\Release\netcoreapp2.1\DoorOpenConsole.pdb

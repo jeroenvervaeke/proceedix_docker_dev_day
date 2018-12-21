@@ -1,6 +1,6 @@
 version: '3'
 services:
-  rabbitmq-daemon:
+  rabbitmq-deamon:
     image: 'rabbitmq:3-management'
     hostname: 'rabbitmq'
     ports: 
@@ -13,8 +13,11 @@ services:
     ports:
       - "8081:80"
     depends_on:
-      - "rabbitmq-daemon"
-  slack-bot:
-    build: slack_bot/slackBot/.
+      - "rabbitmq-deamon"
+  dooropenconsole:
+    image: ${DOCKER_REGISTRY-}dooropenconsole
+    build:
+      context: .
+      dockerfile: DoorOpenConsole/Dockerfile
     depends_on:
-      - "rabbitmq-daemon"
+      - "rabbitmq-tester"
